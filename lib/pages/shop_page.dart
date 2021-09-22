@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_ui/pages/home_page.dart';
+
+import 'buy_page.dart';
+
+final List<Plants> shop_plants = [];
 
 class ShopPage extends StatefulWidget {
+  final id = 'shop_widget';
   const ShopPage({Key? key}) : super(key: key);
 
   @override
@@ -10,6 +16,87 @@ class ShopPage extends StatefulWidget {
 class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView.builder(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      padding: const EdgeInsets.only(top: 10),
+      itemCount: shop_plants.length,
+      itemExtent: 153,
+      itemBuilder: (BuildContext context, int index) {
+        return Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15)),
+                          image: DecorationImage(
+                            image: AssetImage(shop_plants[index].image),
+                            fit: BoxFit.cover,
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                        ),
+                        color: Colors.black38,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            shop_plants[index].name,
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.white),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            '\$${shop_plants[index].cost}',
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Material(
+              color: Colors.transparent,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(15),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BuyPage(
+                          info: shop_plants[index],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+        );
+      },
+    );
   }
 }

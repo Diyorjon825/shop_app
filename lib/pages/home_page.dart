@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app_ui/pages/buy_page.dart';
-import 'package:shop_app_ui/resources/resources.dart';
+import 'package:shop_app_ui/pages/main_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,18 +8,6 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-
-final List<Plants> plants = [
-  Plants(Images.areka, 'Arexa', '20', 3.3),
-  Plants(Images.faux, 'Faux', '10', 4.1),
-  Plants(Images.fejka, 'Fejka', '15', 4.8),
-  Plants(Images.foleage, 'Foleage', '30', 3.9),
-  Plants(Images.monstera, 'Monstera', '30', 4.2),
-  Plants(Images.monsteraAfrican, 'Monstera African', '25', 3.1),
-  Plants(Images.nearlyNatural, 'Nearly Natural', '35', 5),
-  Plants(Images.pileya, 'Pileya', '23', 4.2),
-  Plants(Images.temezlik, 'Temezlik', '20', 3.5),
-];
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -111,9 +99,10 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => BuyPage(
-                          info: plants[index],
-                        )),
+                  builder: (context) => BuyPage(
+                    info: plants[index],
+                  ),
+                ),
               );
             },
           ),
@@ -124,7 +113,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class Plants {
-  String image, name, cost;
+  String image, name, cost, info;
   double rating;
-  Plants(this.image, this.name, this.cost, this.rating);
+  Plants(this.image, this.name, this.cost, this.rating, this.info);
 }
