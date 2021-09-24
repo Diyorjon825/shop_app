@@ -3,7 +3,7 @@ import 'package:shop_app_ui/pages/home_page.dart';
 
 import 'buy_page.dart';
 
-final List<Plants> shop_plants = [];
+List<Plants> shop_plants = [];
 
 class ShopPage extends StatefulWidget {
   final id = 'shop_widget';
@@ -30,11 +30,10 @@ class _ShopPageState extends State<ShopPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
+                    flex: 3,
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomLeft: Radius.circular(15)),
+                          borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
                             image: AssetImage(shop_plants[index].image),
                             fit: BoxFit.cover,
@@ -42,7 +41,7 @@ class _ShopPageState extends State<ShopPage> {
                     ),
                   ),
                   Expanded(
-                    flex: 3,
+                    flex: 5,
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       decoration: const BoxDecoration(
@@ -59,13 +58,19 @@ class _ShopPageState extends State<ShopPage> {
                           Text(
                             shop_plants[index].name,
                             style: const TextStyle(
-                                fontSize: 18, color: Colors.white),
+                                fontSize: 25, color: Colors.white),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 10),
                           Text(
                             '\$${shop_plants[index].cost}',
                             style: const TextStyle(
-                                fontSize: 16, color: Colors.white),
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
@@ -91,6 +96,21 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                     );
                   },
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                padding: const EdgeInsets.only(right: 15),
+                onPressed: () {
+                  setState(() {
+                    shop_plants.removeAt(index);
+                  });
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.white,
                 ),
               ),
             )

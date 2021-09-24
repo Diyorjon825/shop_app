@@ -79,10 +79,14 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         plants[index].name,
                         style: const TextStyle(color: Colors.white),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         '\$ ${plants[index].cost}',
                         style: const TextStyle(color: Colors.white),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       )
                     ],
                   ),

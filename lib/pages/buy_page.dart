@@ -77,7 +77,7 @@ class _BuyPageState extends State<BuyPage> {
                           starSpacing: 2,
                           maxValueVisibility: true,
                           valueLabelVisibility: true,
-                          animationDuration: Duration(milliseconds: 1000),
+                          animationDuration: const Duration(milliseconds: 1000),
                           valueLabelPadding: const EdgeInsets.symmetric(
                               vertical: 1, horizontal: 8),
                           valueLabelMargin: const EdgeInsets.only(right: 8),

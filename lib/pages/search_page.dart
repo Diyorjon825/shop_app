@@ -56,6 +56,7 @@ class _SearchPageState extends State<SearchPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Expanded(
+                        flex: 3,
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
@@ -68,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ),
                       Expanded(
-                        flex: 3,
+                        flex: 5,
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: const BoxDecoration(
@@ -85,13 +86,17 @@ class _SearchPageState extends State<SearchPage> {
                               Text(
                                 findPlants[index].name,
                                 style: const TextStyle(
-                                    fontSize: 18, color: Colors.white),
+                                    fontSize: 25, color: Colors.white),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 10),
                               Text(
                                 '\$${findPlants[index].cost}',
                                 style: const TextStyle(
-                                    fontSize: 16, color: Colors.white),
+                                    fontSize: 20, color: Colors.white),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),
