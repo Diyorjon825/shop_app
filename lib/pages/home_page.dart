@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app_ui/pages/buy_page.dart';
+import 'package:shop_app_ui/pages/manuai_info_widget.dart';
 import 'package:shop_app_ui/pages/main_page.dart';
+
+import 'shop_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,13 +45,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget productWidget(int index) {
-    return Stack(
+    return Column(
       children: [
-        Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: Container(
+        Expanded(
+          flex: 3,
+          child: Stack(
+            children: [
+              Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(plants[index].image),
@@ -61,63 +63,75 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    )),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        plants[index].name,
-                        style: const TextStyle(color: Colors.white),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(15),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ManualInfoWidget(
+                          info: plants[index],
+                        ),
                       ),
-                      Text(
-                        '\$ ${plants[index].cost}',
-                        style: const TextStyle(color: Colors.white),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    ],
-                  ),
+                    );
+                  },
                 ),
+              )
+            ],
+          ),
+        ),
+        Expanded(
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
               ),
             ),
-          ],
-        ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(15),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => BuyPage(
-                    info: plants[index],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          plants[index].name,
+                          style: const TextStyle(color: Colors.white),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          '\$ ${plants[index].cost}',
+                          style: const TextStyle(color: Colors.white),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                  IconButton(
+                    onPressed: () {
+                      if (!shop_plants.contains(plants[index])) {
+                        shop_plants.add(plants[index]);
+                      }
+                    },
+                    icon: const Icon(
+                      Icons.add_shopping_cart_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        )
+        ),
       ],
     );
   }
-}
-
-class Plants {
-  String image, name, cost, info;
-  double rating;
-  Plants(this.image, this.name, this.cost, this.rating, this.info);
 }

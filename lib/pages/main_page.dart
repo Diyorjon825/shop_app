@@ -7,8 +7,14 @@ import 'home_page.dart';
 const String info =
     ' "ILDIS LegumeWeb entry for Alexa". International Legume Database & Information Service. Cardiff School of Computer Science & Informatics. Retrieved 30 January 2014.USDA; ARS; National Genetic Resources Program. "GRIN species records of Alexa". Germplasm Resources Information Network—(GRIN) [Online Database]. National Germplasm Resources Laboratory, Beltsville, Maryland. Archived from the original on 24 September 2015. Retrieved 30 January 2014.';
 
+class Plants {
+  String image, name, cost, info;
+  double rating;
+  Plants(this.image, this.name, this.cost, this.rating, this.info);
+}
+
 final List<Plants> plants = [
-  Plants(Images.areka, 'Arexa', '20', 3.3, info),
+  Plants(Images.areka, 'Arexa', '20.8', 3.3, info),
   Plants(Images.faux, 'Faux', '10', 4.1, info),
   Plants(Images.fejka, 'Fejka', '15', 4.8, info),
   Plants(Images.foleage, 'Foleage', '30', 3.9, info),

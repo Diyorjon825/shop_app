@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app_ui/pages/home_page.dart';
 import 'package:shop_app_ui/pages/main_page.dart';
 
-import 'buy_page.dart';
+import 'manuai_info_widget.dart';
 
 class SearchPage extends StatefulWidget {
   final id = 'search_page';
@@ -116,7 +116,7 @@ class _SearchPageState extends State<SearchPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BuyPage(
+                            builder: (context) => ManualInfoWidget(
                               info: findPlants[index],
                             ),
                           ),
